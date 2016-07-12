@@ -64,7 +64,7 @@ class StringValidator implements DataTypeValidator
             throw new MaxLengthExceedException($this->length);
         }
 
-        if (!preg_match($this->regexp, $data)) {
+        if (!(is_null($this->regexp) || preg_match($this->regexp, $data))) {
             throw new RegexpConstraintViolationException();
         }
 

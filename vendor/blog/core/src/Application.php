@@ -98,6 +98,7 @@ class Application
             $controller = $this->locator[$route['controller']];
 
             $response = call_user_func_array([$controller, $route['action']], [$request]);
+
             $code = $response->getCode();
             $headers = $response->getHeaders();
 

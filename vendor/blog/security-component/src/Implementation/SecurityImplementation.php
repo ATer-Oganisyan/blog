@@ -107,6 +107,8 @@ class SecurityImplementation implements Security
         $user = $this->auth[$type]->auth($credentionals);
         $user['type'] = $type;
         $this->storage->set($user);
+        return ['success' => 'true', 'info' => []];
+
     }
 
     /**

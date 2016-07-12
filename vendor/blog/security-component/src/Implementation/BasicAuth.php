@@ -124,7 +124,7 @@ class BasicAuth implements Auth
      */
     public function auth(array $credentionals)
     {
-        if (!isset($credentionals['login']) || $credentionals['password']) {
+        if (!isset($credentionals['login']) || !$credentionals['password']) {
             throw new UndefinedCredentionalsException();
         }
 
@@ -138,17 +138,17 @@ class BasicAuth implements Auth
 
             [ // conditions
                 ['login', 'equals', $credentionals['login']],
-                ['password', 'equals', sha1($credentionals['login'])],
+                ['password', 'equals', sha1($credentionals['password'])],
                 ['status_id', 'equals', self::USER_STATUS_ENEABLED]
             ]
 
         );
 
-        foreach ($users['rows'] as $user) {
-            return $user;
+        if ($users['count'] !== 1) {
+            throw new WrongCredentionalsException();
         }
 
-        throw new WrongCredentionalsException();
-
+        list($user) = $users['result'];
+        return $user;
     }
 }

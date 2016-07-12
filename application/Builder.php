@@ -88,7 +88,7 @@ class Builder
 
         $postController = new PostController($c['modules']['blog'], $validator, $postModel);
         $commentController = new CommentController($c['modules']['blog'], $commentModel, $validator);
-        $authController = new AuthentificateController($c, $securityModel, $validator);
+        $authController = new AuthentificateController($c['security'], $securityModel, $validator);
 
         return [
             'post'    => $postController,

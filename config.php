@@ -80,10 +80,11 @@ $config = [
     ],
 
     'security' => [
-        'refersh_user_by_every_request' => 0
+        'refersh_user_by_every_request' => 0,
+        'auth_type' => 'basic',
+        'auth_redirect' => '/',
+        'auth_page' => '/login/'
     ],
-
-    'auth_page' => '/login/'
 
 
 

@@ -46,7 +46,7 @@ interface Security
      *
      * @param array $credentionals ridentionals
      *
-     * @return array
+     * @return array ['success' => true|false, 'info' => [INFO]]
      */
     public function auth($type, array $credentionals);
 

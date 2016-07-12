@@ -187,7 +187,7 @@ class Sql implements QueryBuilder
     protected function checkMapper(array $mapper)
     {
         foreach (['table', 'fields'] as $key) {
-            if (!isset($mapper[$key]) or !is_array($mapper['fields'])) {
+            if (!isset($mapper[$key]) || !is_array($mapper['fields'])) {
                 throw new BadMapperException();
             }
         }
