@@ -63,11 +63,16 @@ class SecurityImplementation implements Security
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function logOut()
     {
         return $this->component->logOut();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function authorized()
+    {
+        return ($this->getUser() > []);
     }
 }

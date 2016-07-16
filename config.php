@@ -4,7 +4,7 @@ $config = [
 
     'routing' => [
         '/' => [
-            'method' => 'GET',
+            'method' => ['GET'],
             'controller' => 'post',
             'action' => 'listAction',
             'template' => 'blog/list.tpl.php',
@@ -12,7 +12,7 @@ $config = [
         ],
 
         '/post/' => [
-            'method' => 'GET',
+            'method' => ['GET'],
             'controller' => 'post',
             'action' => 'showAction',
             'template' => 'blog/show.tpl.php',
@@ -20,39 +20,32 @@ $config = [
         ],
 
         '/postcreate/' => [
-            'method' => 'POST',
+            'method' => ['POST'],
             'controller' => 'post',
             'action' => 'addAction',
             'context' => 'json'
         ],
 
         '/comment/' => [
-            'method' => 'GET',
+            'method' => ['GET'],
             'controller' => 'comment',
             'action' => 'listAction',
             'context' => 'json'
         ],
 
         '/comment/create/' => [
-            'method' => 'POST',
+            'method' => ['POST'],
             'controller' => 'comment',
             'action' => 'addAction',
             'context' => 'json',
         ],
 
         '/login/' => [
-            'method' => 'GET',
+            'method' => ['GET', 'POST'],
             'controller' => 'auth',
             'template' => 'auth/main.tpl.php',
             'action' => 'authAction',
             'context' => 'html'
-        ],
-
-        '/auth/' => [
-            'method' => 'POST',
-            'controller' => 'auth',
-            'action' => 'authAction',
-            'context' => 'json'
         ],
     ],
 

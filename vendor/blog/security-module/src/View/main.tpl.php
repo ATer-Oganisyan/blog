@@ -8,8 +8,8 @@
 
 $content = $this->content;
 ?>
-
-<form action="/auth/"  method="post">
+<?php if (!$content['success']):?><p style="color: red">Wrong creditionals</p><?php endif?>
+<form action="/login/"  method="post">
 Login: <input type = "text" name="login"><br>
 Password: <input type = "text" name="password"><br>
 <input type="submit" value="go" name = "auth">

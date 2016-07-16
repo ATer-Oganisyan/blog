@@ -21,7 +21,7 @@ use Blog\Db\Implementation\Sql;
 use Blog\SecurityComponent\Implementation\BasicAuth;
 use Blog\SecurityComponent\Implementation\SecurityImplementation;
 use Blog\SecurityComponent\Implementation\Session;
-use Blog\SecurityModule\Controller\AuthentificateController;
+use Blog\SecurityModule\Controller\AuthenticateController;
 use Blog\BlogModule\Model\Implementation\CommentImplementation;
 use Blog\BlogModule\Model\Implementation\PostImplementation;
 use Blog\SecurityModule\Model\Implementation\SecurityImplementation as SecurityModel;
@@ -88,7 +88,7 @@ class Builder
 
         $postController = new PostController($c['modules']['blog'], $validator, $postModel);
         $commentController = new CommentController($c['modules']['blog'], $commentModel, $validator);
-        $authController = new AuthentificateController($c['security'], $securityModel, $validator);
+        $authController = new AuthenticateController($c['security'], $securityModel, $validator);
 
         return [
             'post'    => $postController,

@@ -13,7 +13,7 @@ use Blog\SecurityModule\Model\Security;
  *
  * @package blog/security-module
  */
-class AuthentificateController extends Controller
+class AuthenticateController extends Controller
 {
     /**
      * Config
@@ -64,28 +64,40 @@ class AuthentificateController extends Controller
     {
         try {
 
-            if (!isset($request['auth'])) {
-                return $this->response(
+            if ($this->security->authorized()) {
+                return $this->redirect();
+            }
 
-                );
+            if (!isset($request['auth'])) {
+                return $this->response();
             }
 
             $login = $this->validator->validate('login', RequestValidator::TYPE_STRING, $request);
             $password = $this->validator->validate('password', RequestValidator::TYPE_STRING, $request);
 
             if ($this->security->auth($this->config['auth_type'], ['login' => $login, 'password' => $password])) {
-                return $this->response(
-                    [],
-                    Response::HTTP_CODE_REDIRECT,
-                    [Response::HEADER_LOCATION => $this->config['auth_redirect']]
-                );
+                return $this->redirect();
             }
 
             return $this->response(['success' => false]);
 
         } catch (RequestValidatorException $e) {
-            return $this->response(['success' => false, Response::HTTP_CODE_BAD_REQUEST]);
+            return $this->response(['success' => false], Response::HTTP_CODE_BAD_REQUEST);
         }
+    }
+
+    /**
+     * Redirects
+     *
+     * @return Response
+     */
+    protected function redirect()
+    {
+        return $this->response(
+            [],
+            Response::HTTP_CODE_REDIRECT,
+            [Response::HEADER_LOCATION => $this->config['auth_redirect']]
+        );
     }
 
     /**

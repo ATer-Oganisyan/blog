@@ -47,7 +47,9 @@ class PostImplementation implements Post
     public function getList($start, $number, array $fields)
     {
         $list = $this->blog->getPosts($start, $number, $fields);
-        $list = $this->bindListWithUsers($list);
+        if ($list['result'] > []) {
+            $list = $this->bindListWithUsers($list);
+        }
         return $list;
     }
 

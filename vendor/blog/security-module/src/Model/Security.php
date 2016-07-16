@@ -45,6 +45,14 @@ interface Security
      */
     public function auth($type, array $credentionals);
 
+    /**
+     * Returns true if user is authorized
+     *
+     * @return bool
+     */
+    public function authorized();
+
+
 
     /**
      * User logout

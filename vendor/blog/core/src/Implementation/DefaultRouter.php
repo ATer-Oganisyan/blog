@@ -41,11 +41,16 @@ class DefaultRouter implements Router
     /**
      * {@inheritdoc}
      */
-    public function match($uri)
+    public function match($uri, $method)
     {
         if (!isset($this->routing[$uri])) {
-            throw new RouteNotFoundException();
+            throw new RouteNotFoundException('unknown URI');
         }
+
+        if (isset($this->routing[$uri]['method']) && !in_array($method, $this->routing[$uri]['method'])) {
+            throw new RouteNotFoundException(sprintf('Method %s is not alowed', $method));
+        }
+
 
         if (!isset($this->routing[$uri]['context'])) {
             throw new UndefinedContextException();

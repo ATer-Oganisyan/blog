@@ -93,7 +93,7 @@ class Application
             $uri = $this->registry['server']['REQUEST_URI'];
             $uri = explode('?', $uri);
             list($uri) = $uri;
-            $route = $this->router->match($uri);
+            $route = $this->router->match($uri, $this->registry['server']['REQUEST_METHOD']);
 
             $controller = $this->locator[$route['controller']];
 
@@ -109,7 +109,6 @@ class Application
 
             $context = $route['context'];
             $headers = array_merge($headers, $this->context->getHeaders($context));
-
 
             http_response_code($code);
             foreach ($headers as $key => $header) {

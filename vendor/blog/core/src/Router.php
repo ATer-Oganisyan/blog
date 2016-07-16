@@ -21,9 +21,11 @@ interface Router
      *
      * @param string $uri URI
      *
+     * @param string $method request method
+     *
      * @return array
      */
-    public function match($uri);
+    public function match($uri, $method);
 
     /**
      * Configures routing
